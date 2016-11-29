@@ -1,6 +1,6 @@
 package:
   name: tensorflow
-  version: "0.11.0"
+  version: "0.12.0rc0"
 
 build:
   number: 0
@@ -17,14 +17,12 @@ requirements:
   build:
     - python
     - pip
-    - mock >=2.0.0
     - numpy >=1.11.0
     - protobuf ==3.0.0
     - six >=1.10.0
     - wheel >=0.26
   run:
     - python
-    - mock >=2.0.0
     - numpy >=1.11.0
     - protobuf ==3.0.0
     - six >=1.10.0
