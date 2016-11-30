@@ -23,7 +23,7 @@ if [ `uname` == Linux ]; then
     cmake \
         -DCMAKE_EXE_LINKER_FLAGS=-lrt \
         -DCMAKE_BUILD_TYPE=Release ../tensorflow/contrib/cmake
-    make -j8 tf_python_build_pip_package
+    make -j${CPU_COUNT} tf_python_build_pip_package
 
     pip install --no-deps ./tf_python/dist/*.whl
 fi
