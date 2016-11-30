@@ -11,11 +11,16 @@ if [ `uname` == Darwin ]; then
 fi
 
 if [ `uname` == Linux ]; then
-    if [ "$PY_VER" == "2.7" ]; then
-        pip install --no-deps https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${PKG_VERSION}-cp27-none-linux_x86_64.whl
-    elif [ "$PY_VER" == "3.4" ]; then
-        pip install --no-deps https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${PKG_VERSION}-cp34-cp34m-linux_x86_64.whl
-    elif [ "$PY_VER" == "3.5" ]; then
-        pip install --no-deps https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${PKG_VERSION}-cp35-cp35m-linux_x86_64.whl
-    fi
+    rm -rf build
+    mkdir -p build
+    cd build
+
+    export LIBRARY_PATH=$PREFIX/lib
+    export INCLUDE_PATH=$PREFIX/include
+    cmake \
+        -DCMAKE_INSTALL_PREFIX=$PREFIX \
+        -DCMAKE_INCLUDE_PATH=$INCLUDE_PATH \
+        -DCMAKE_LIBRARY_PATH=$LIBRARY_PATH \
+        -DCMAKE_BUILD_TYPE=Release ../tensorflow/contrib/cmake
+    make all
 fi
