@@ -17,6 +17,11 @@ build:
   skip: True  # [win64 and not py35]
   skip: True  # [py26]
   skip: True  # [py33]
+  # To limit CI time only the Linux Python 3.5 build of tensorflow is done
+  # all other build are skipped using the follow lines
+  skip: True  # [win]
+  skip: True  # [osx]
+  skip: True  # [linux and not py35]
   entry_points:
     - tensorboard = tensorflow.tensorboard.tensorboard:main
 
